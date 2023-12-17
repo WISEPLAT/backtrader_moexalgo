@@ -3,11 +3,17 @@ from backtrader import Cerebro, TimeFrame
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Storage AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Trading System
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
+
 # Historical/new bars of ticker
 if __name__ == '__main__':  # Entry point when running this script
 
     symbol = 'SBER'  # Ticker in the format <Ticker code>
+
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = Cerebro(stdstats=False)  # Initiating the "engine" BackTrader
 
     today = date.today()  # Today's date without time

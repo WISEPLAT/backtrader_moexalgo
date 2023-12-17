@@ -14,7 +14,7 @@ with codecs.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='backtrader_moexalgo',
-      version='1.0.4',
+      version='1.0.5',
       author='wiseplat',
       author_email='oshpagin@gmail.com',
       license='MIT License',
@@ -23,7 +23,7 @@ setup(name='backtrader_moexalgo',
       long_description_content_type='text/markdown',
       url='https://github.com/WISEPLAT/backtrader_moexalgo',
       packages=find_packages(exclude=['docs', 'examples', 'ConfigMoexalgo']),
-      install_requires=['moexalgo', 'pandas', 'matplotlib'],
+      install_requires=['moexalgo', 'pandas', 'matplotlib', 'numpy', 'backtrader', 'requests', 'websockets'],
       classifiers=[
           # How mature is this project? Common values are
           #   3 - Alpha

@@ -3,11 +3,17 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Storage AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Trading System
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
+
 # Multiple time intervals for one ticker: Getting from history + live
 if __name__ == '__main__':  # Entry point when running this script
 
     symbol = 'SBER'  # Ticker in the format <Ticker code>
+
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
     # 1. Historical 5-minute bars + 10-minute bars for the last 100 hours + Chart because offline/ timeframe M5 + M10

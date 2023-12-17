@@ -3,6 +3,8 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Торговая система
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
 
 def get_timeframe(tf, TimeFrame):
     """Преобразуем ТФ в параметры для добавления данных по стратегии"""
@@ -23,7 +25,10 @@ def get_timeframe(tf, TimeFrame):
 if __name__ == '__main__':  # Точка входа при запуске этого скрипта
 
     symbol = 'SBER'  # Тикер в формате <Код тикера>
+
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)
 
     tf = "1D"  # '1m', '10m', '1h', '1D', '1W', '1M'

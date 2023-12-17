@@ -4,12 +4,17 @@ import backtrader.analyzers as btanalyzers
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 from strategy_mc import StrategyJustPrintsOHLCVAndSuperCandlesMC  # Торговая система
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
+
 # Исторические/новые бары тикера
 if __name__ == '__main__':  # Точка входа при запуске этого скрипта
 
     symbol = 'SBER'  # Тикер в формате <Код тикера>
 
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)  # Инициируем "движок" BackTrader
 
     cerebro.broker.setcash(2000000)  # Устанавливаем сколько денег

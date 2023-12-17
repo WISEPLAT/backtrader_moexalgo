@@ -3,6 +3,8 @@ import backtrader as bt
 import backtrader.analyzers as btanalyzers
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
 
 # Торговая система
 class RSIStrategy(bt.Strategy):
@@ -117,6 +119,8 @@ if __name__ == '__main__':
     symbols = ('SBER', 'LKOH', 'AFLT', 'GMKN', )  # тикеры, по которым будем получать данные
 
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)  # Инициируем "движок" BackTrader
 
     cerebro.broker.setcash(2000000)  # Устанавливаем сколько денег

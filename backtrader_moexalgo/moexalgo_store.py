@@ -1,5 +1,5 @@
 from backtrader.dataseries import TimeFrame
-from moexalgo import Market
+from moexalgo import session, Market
 
 from .moexalgo_feed import MoexAlgoData
 
@@ -17,13 +17,17 @@ class MoexAlgoStore(object):
         (TimeFrame.Months, 1): '1M',
     }
 
-    def __init__(self, ):
+    def __init__(self, login="", password=""):
         """Инициализация необходимых переменных"""
         self.market = Market('stocks')
         self._cash = 0
         self._value = 0
         self._data = None
         self._datas = {}
+
+        if login and password:
+            session.authorize(login, password)  # Авторизуемся на Московской Бирже
+            print("Авторизуемся на Московской Бирже")
 
     def getdata(self, **kwargs):  # timeframe, compression, from_date=None, live_bars=True
         """Метод получения исторических и live данных по тикеру"""

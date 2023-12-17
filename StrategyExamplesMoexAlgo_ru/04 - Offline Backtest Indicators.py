@@ -3,6 +3,8 @@ import backtrader as bt
 import backtrader.analyzers as btanalyzers
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
 
 class UnderOver(bt.Indicator):
     lines = ('underover',)
@@ -153,7 +155,10 @@ if __name__ == '__main__':
     
     symbol = 'SBER'  # Тикер в формате <Код тикера>
     symbol2 = 'LKOH'  # Тикер в формате <Код тикера>
+
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)  # Инициируем "движок" BackTrader
 
     cerebro.broker.setcash(2000000)  # Устанавливаем сколько денег

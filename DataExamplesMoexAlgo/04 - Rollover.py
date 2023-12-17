@@ -3,6 +3,8 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Storage AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Trading System
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
 
 def get_timeframe(tf, TimeFrame):
     """Converting TF to parameters for adding strategy data"""
@@ -23,7 +25,10 @@ def get_timeframe(tf, TimeFrame):
 if __name__ == '__main__':  # Entry point when running this script
 
     symbol = 'SBER'  # Ticker in the format <Ticker code>
+
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
     tf = "1D"  # '1m', '10m', '1h', '1D', '1W', '1M'

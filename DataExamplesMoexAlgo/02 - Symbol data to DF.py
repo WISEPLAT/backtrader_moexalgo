@@ -3,6 +3,8 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Storage AlgoPack
 import pandas as pd
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
 
 # Trading System
 class StrategySaveOHLCVToDF(bt.Strategy):
@@ -69,7 +71,10 @@ class StrategySaveOHLCVToDF(bt.Strategy):
 # Historical/new bars of ticker
 if __name__ == '__main__':  # Entry point when running this script
     symbol = 'SBER'  # Ticker in the format <Ticker code>
+
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
     # 1. Historical D1 bars for 365 days + Chart because offline/ timeframe D1

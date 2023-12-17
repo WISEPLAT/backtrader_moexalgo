@@ -3,6 +3,8 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 import pandas as pd
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
 
 # Торговая система
 class StrategySaveOHLCVToDF(bt.Strategy):
@@ -69,7 +71,10 @@ class StrategySaveOHLCVToDF(bt.Strategy):
 # Исторические/новые бары тикера
 if __name__ == '__main__':  # Точка входа при запуске этого скрипта
     symbol = 'SBER'  # Тикер в формате <Код тикера>
+
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)
 
     # 1. Исторические D1 бары за 365 дней + График т.к. оффлайн/ таймфрейм D1

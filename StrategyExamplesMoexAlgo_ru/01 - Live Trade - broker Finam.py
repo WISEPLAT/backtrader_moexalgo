@@ -10,6 +10,8 @@ from FinamPy import FinamPy  # Коннект к Финам API - для выс�
 from FinamPy.proto.tradeapi.v1.common_pb2 import BUY_SELL_BUY, BUY_SELL_SELL
 from my_config.Config_Finam import Config  # Файл конфигурации
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
 
 # Торговая система
 class RSIStrategy(bt.Strategy):
@@ -196,7 +198,10 @@ if __name__ == '__main__':
 
     symbol = 'SBER'  # Тикер в формате <Код тикера>
     # symbol2 = 'LKOH'  # Тикер в формате <Код тикера>
+
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)  # Инициируем "движок" BackTrader
 
     # live подключение к брокеру будем делать напрямую

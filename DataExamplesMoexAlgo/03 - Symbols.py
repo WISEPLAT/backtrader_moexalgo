@@ -3,12 +3,17 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Storage AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Trading System
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
+
 # Multiple tickers for multiple trading systems on the same time interval history + live
 if __name__ == '__main__':  # Entry point when running this script
     
     symbols = ('SBER', 'AFLT')  # tickers for which we will receive data
 
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
     for _symbol in symbols:  # Running through all the tickers

@@ -11,6 +11,8 @@ from BackTraderAlor.ALStore import ALStore  # Storage Alor
 from AlorPy import AlorPy  # Work with Alor OpenAPI V2
 from my_config.Config_Alor import Config  # Alor Connection configuration file
 
+from Config import Config as ConfigMOEX  # for authorization on the Moscow Stock Exchange
+
 
 # Trading system
 class RSIStrategy(bt.Strategy):
@@ -180,7 +182,10 @@ if __name__ == '__main__':
 
     symbol = 'SBER'  # Ticker in the format <Ticker code>
     # symbol2 = 'LKOH'  # Ticker in the format <Ticker code>
+
     store = MoexAlgoStore()  # Storage AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
     # live connection to the broker - for Offline comment on these two lines

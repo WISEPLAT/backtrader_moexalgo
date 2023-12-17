@@ -3,12 +3,17 @@ import backtrader as bt
 from backtrader_moexalgo.moexalgo_store import MoexAlgoStore  # Хранилище AlgoPack
 from Strategy import StrategyJustPrintsOHLCVAndSuperCandles  # Торговая система
 
+from Config import Config as ConfigMOEX  # для авторизации на Московской Бирже
+
+
 # Несколько тикеров для нескольких торговых систем по одному временнОму интервалу history + live
 if __name__ == '__main__':  # Точка входа при запуске этого скрипта
     
     symbols = ('SBER', 'AFLT')  # тикеры, по которым будем получать данные
 
     store = MoexAlgoStore()  # Хранилище AlgoPack
+    # store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
     cerebro = bt.Cerebro(quicknotify=True)
 
     for _symbol in symbols:  # Пробегаемся по всем тикерам
