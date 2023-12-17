@@ -49,6 +49,18 @@ pip install numpy pandas backtrader moexalgo requests websockets matplotlib
 ### Getting started
 To make it easier to figure out how everything works, many examples have been made in the folders **DataExamplesMoexAlgo** and **StrategyExamplesMoexAlgo**.
 
+```shell
+Attention! To receive Super Candles, you need to log in to the Moscow Exchange website.
+
+1. Activate this line:
+store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Storage AlgoPack + authorization on the Moscow Stock Exchange
+
+2. Fill in your credentials in the file Config.py
+class Config:
+    Login = '<Email address>'  # The email address provided during registration on the site moex.com
+    Password = '<Password>'  # The password for the account on the site moex.com
+```
+
 The **DataExamplesMoexAlgo** folder contains the code of examples for working with exchange data via the [MOEX](https://www.moex.com/ru/algopack/about ) API.
 
 * **01 - Symbol.py** - trading strategy for obtaining historical and "live" data of one ticker for one timeframe
@@ -174,6 +186,18 @@ pip install numpy pandas backtrader moexalgo requests websockets matplotlib
 
 ### Начало работы
 Чтобы было легче разобраться как всё работает, сделано множество примеров в папках **DataExamplesMoexAlgo_ru** и **StrategyExamplesMoexAlgo_ru**.
+
+```shell
+Внимание! Для получения Super Candles - необходима авторизация на сайте Московской биржи.
+
+1. Активируйте эту строку:
+store = MoexAlgoStore(login=ConfigMOEX.Login, password=ConfigMOEX.Password)  # Хранилище AlgoPack + авторизация на Московской Бирже
+
+2. Заполните ваши учетные данные в файле Config.py
+class Config:
+    Login = '<Адрес электронной почты>'  # Адрес электронной почты, указанный при регистрации на сайте moex.com
+    Password = '<Пароль>'  # Пароль от учетной записи на сайте moex.com
+```
 
 В папке **DataExamplesMoexAlgo_ru** находится код примеров по работе с биржевыми данными через API интерфейс [MOEX](https://www.moex.com/ru/algopack/about ).
 
