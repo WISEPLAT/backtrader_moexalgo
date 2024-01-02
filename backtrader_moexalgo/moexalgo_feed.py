@@ -304,8 +304,11 @@ class MoexAlgoData(DataBase):
             iterator = ticker.candles(date=last_date, till_date=till_date, period=interval,
                                       limit=self.limit)  # История. Максимум, 50000 баров
             rows_list = []  # Будем собирать строки в список
-            for it in iterator:  # Итерируем генератор
-                rows_list.append(it.__dict__)  # Класс превращаем в словарь, добавляем строку в список
+            try:
+                for it in iterator:  # Итерируем генератор
+                    rows_list.append(it.__dict__)  # Класс превращаем в словарь, добавляем строку в список
+            except:  # if error - we are in notebook
+                rows_list = iterator
             stats = pd.DataFrame(rows_list)  # Из списка создаем pandas DataFrame
             stats.rename(columns={'begin': 'datetime'}, inplace=True)  # Переименовываем колонку даты и времени
 
@@ -416,8 +419,11 @@ class MoexAlgoData(DataBase):
                 break
 
             rows_list = []  # Будем собирать строки в список
-            for it in iterator:  # Итерируем генератор
-                rows_list.append(it.__dict__)  # Класс превращаем в словарь, добавляем строку в список
+            try:
+                for it in iterator:  # Итерируем генератор
+                    rows_list.append(it.__dict__)  # Класс превращаем в словарь, добавляем строку в список
+            except:  # if error - we are in notebook
+                rows_list = iterator
             stats = pd.DataFrame(rows_list)  # Из списка создаем pandas DataFrame
             stats.drop('secid', axis='columns', inplace=True)  # Удаляем колонку тикера. Название тикера есть в имени файла
             stats.rename(columns={'ts': 'datetime'}, inplace=True)  # Переименовываем колонку даты и времени
