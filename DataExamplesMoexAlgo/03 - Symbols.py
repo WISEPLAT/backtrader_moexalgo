@@ -18,8 +18,8 @@ if __name__ == '__main__':  # Entry point when running this script
 
     for _symbol in symbols:  # Running through all the tickers
 
-        # 1. Historical 5-minute bars for the last 100 hours + Chart because offline/ M5 timeframe
-        fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=100*60)  # we take data for the last 100 hours
+        # 1. Historical 5-minute bars for the last 120 hours + Chart because offline/ M5 timeframe
+        fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=120*60)  # we take data for the last 120 hours
         data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=_symbol, fromdate=fromdate, live_bars=False)
 
         # 2. Historical 1-minute bars for the last hour + new live bars / M1 timeframe

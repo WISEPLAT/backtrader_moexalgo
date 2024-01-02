@@ -16,14 +16,14 @@ if __name__ == '__main__':  # Entry point when running this script
 
     cerebro = bt.Cerebro(quicknotify=True)  # Initiating the "engine" BackTrader
 
-    # 1. Historical 5-minute bars + 10-minute bars for the last 100 hours + Chart because offline/ timeframe M5 + M10
-    fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=100*60)  # we take data for the last 100 hours
+    # 1. Historical 5-minute bars + 10-minute bars for the last 120 hours + Chart because offline/ timeframe M5 + M10
+    fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=120*60)  # we take data for the last 120 hours
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=symbol, fromdate=fromdate, live_bars=False)  # Historical data for a small time interval (should go first)
     cerebro.adddata(data)  # Добавляем данные
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=10, dataname=symbol, fromdate=fromdate, live_bars=False)  # Historical data for a large time interval
 
-    # # 2. Historical 1-minute + 5-minute bars for the last 3 days + new live bars / timeframe M1 + M5
-    # fromdate = dt.datetime.utcnow() - dt.timedelta(days=3)  # we take data for the last 3 days
+    # # 2. Historical 1-minute + 5-minute bars for the last 5 days + new live bars / timeframe M1 + M5
+    # fromdate = dt.datetime.utcnow() - dt.timedelta(days=5)  # we take data for the last 5 days
     # data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=1, dataname=symbol, fromdate=fromdate, live_bars=True)  # Historical data for a small time interval (should go first)
     # cerebro.adddata(data)  # Adding data
     # data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=symbol, fromdate=fromdate, live_bars=True)  # Historical data for a large time interval

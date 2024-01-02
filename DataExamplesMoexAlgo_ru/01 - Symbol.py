@@ -18,7 +18,7 @@ if __name__ == '__main__':  # Точка входа при запуске это
 
     today = date.today()  # Сегодняшняя дата без времени
     week_ago = today - timedelta(days=7)  # неделю назад
-    days_ago_3 = today - timedelta(days=3)  # три дня назад
+    days_ago_5 = today - timedelta(days=5)  # три дня назад
     days_ago_10 = today - timedelta(days=10)  # десять дней назад
     days_ago_N = today - timedelta(days=30)  # N дней назад
 
@@ -38,32 +38,32 @@ if __name__ == '__main__':  # Точка входа при запуске это
     # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=1, fromdate=today, live_bars=True)
 
     # 7. Исторические и новые 10 минутные бары (history + live M10)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_3, live_bars=True)
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_5, live_bars=True)
 
     # 8. Исторические и новые 5 минутные бары (history + live M5 resample from M1)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3, live_bars=True)  # Пример с ТФ M5, которого нет в данных, он получается из '1m' (resample)
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5, live_bars=True)  # Пример с ТФ M5, которого нет в данных, он получается из '1m' (resample)
 
     # 9. Исторические 5 минутные бары + Super Candles (tradestats: history M5)
-    data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3, live_bars=True,
+    data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5, live_bars=True,
                          super_candles=True,  # для получения свечей SuperCandles с расширенным набором характеристик
                          metric='tradestats',  # + необходимо указать тип получаемых метрик
                          )
 
     # 10. Исторические 10 минутные бары + Super Candles (tradestats: history + live M10 resample from M5)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_3, live_bars=True,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_5, live_bars=True,
     #                      super_candles=True,  # для получения свечей SuperCandles с расширенным набором характеристик
     #                      metric='tradestats',  # + необходимо указать тип получаемых метрик
     #                      )
 
     # 11. Исторические 5 минутные бары + Super Candles (orderstats: history + live M5)  // Без данных OHLCV == 0.0, т.к. эти данные можно получить 2-м потоком
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5,
     #                      live_bars=True,
     #                      super_candles=True,  # для получения свечей SuperCandles с расширенным набором характеристик
     #                      metric='orderstats',  # + необходимо указать тип получаемых метрик
     #                      )
 
     # 12. Исторические 5 минутные бары + Super Candles (obstats: history + live M5)  // Без данных OHLCV == 0.0, т.к. эти данные можно получить 2-м потоком
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5,
     #                      live_bars=True,
     #                      super_candles=True,  # для получения свечей SuperCandles с расширенным набором характеристик
     #                      metric='obstats',  # + необходимо указать тип получаемых метрик

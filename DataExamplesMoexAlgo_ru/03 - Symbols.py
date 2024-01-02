@@ -18,8 +18,8 @@ if __name__ == '__main__':  # Точка входа при запуске это
 
     for _symbol in symbols:  # Пробегаемся по всем тикерам
 
-        # 1. Исторические 5-минутные бары за последние 100 часов + График т.к. оффлайн/ таймфрейм M5
-        fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=100*60)  # берем данные за последние 100 часов
+        # 1. Исторические 5-минутные бары за последние 120 часов + График т.к. оффлайн/ таймфрейм M5
+        fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=120*60)  # берем данные за последние 120 часов
         data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=_symbol, fromdate=fromdate, live_bars=False)
 
         # 2. Исторические 1-минутные бары за прошлый час + новые live бары / таймфрейм M1

@@ -18,7 +18,7 @@ if __name__ == '__main__':  # Entry point when running this script
 
     today = date.today()  # Today's date without time
     week_ago = today - timedelta(days=7)  # a week ago
-    days_ago_3 = today - timedelta(days=3)  # three days ago
+    days_ago_5 = today - timedelta(days=5)  # three days ago
     days_ago_10 = today - timedelta(days=10)  # ten days ago
     days_ago_N = today - timedelta(days=30)  # N days ago
 
@@ -38,32 +38,32 @@ if __name__ == '__main__':  # Entry point when running this script
     # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=1, fromdate=today, live_bars=True)
 
     # 7. Historical and new 10-minute bars (history + live M10)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_3, live_bars=True)
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_5, live_bars=True)
 
     # 8. Historical and new 5-minute bars (history + live M5 resample from M1)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3, live_bars=True)  # An example with TF M5, which is not in the data, it is obtained from '1m' (resample)
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5, live_bars=True)  # An example with TF M5, which is not in the data, it is obtained from '1m' (resample)
 
     # 9. Historical 5-minute bars + Super Candles (tradestats: history M5)
-    data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3, live_bars=False,
+    data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5, live_bars=False,
                          super_candles=True,  # to obtain SuperCandles with an extended set of characteristics
                          metric='tradestats',  # + you must specify the type of metrics you receive
                          )
 
     # 10. Historical 10-minute bars + Super Candles (tradestats: history + live M10 resample from M5)
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_3, live_bars=True,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=10, fromdate=days_ago_5, live_bars=True,
     #                      super_candles=True,  # to obtain SuperCandles with an extended set of characteristics
     #                      metric='tradestats',  # + you must specify the type of metrics you receive
     #                      )
 
     # 11. Historical 5-minute bars + Super Candles (orderstats: history + live M5)  // Without OHLCV == 0.0 data, because this data can be obtained by the 2nd stream
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5,
     #                      live_bars=True,
     #                      super_candles=True,  # to obtain SuperCandles with an extended set of characteristics
     #                      metric='orderstats',  # + you must specify the type of metrics you receive
     #                      )
 
     # 12. Historical 5-minute bars + Super Candles (obstats: history + live M5)  // Without OHLCV == 0.0 data, because this data can be obtained by the 2nd stream
-    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_3,
+    # data = store.getdata(dataname=symbol, timeframe=TimeFrame.Minutes, compression=5, fromdate=days_ago_5,
     #                      live_bars=True,
     #                      super_candles=True,  # to obtain SuperCandles with an extended set of characteristics
     #                      metric='obstats',  # + you must specify the type of metrics you receive

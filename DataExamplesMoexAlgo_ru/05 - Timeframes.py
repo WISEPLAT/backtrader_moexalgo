@@ -16,14 +16,14 @@ if __name__ == '__main__':  # Точка входа при запуске это
 
     cerebro = bt.Cerebro(quicknotify=True)
 
-    # 1. Исторические 5-минутные бары + 10-минутные за последние 100 часов + График т.к. оффлайн/ таймфрейм M5 + M10
-    fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=100*60)  # берем данные за последние 100 часов
+    # 1. Исторические 5-минутные бары + 10-минутные за последние 120 часов + График т.к. оффлайн/ таймфрейм M5 + M10
+    fromdate = dt.datetime.utcnow() - dt.timedelta(minutes=120*60)  # берем данные за последние 120 часов
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=symbol, fromdate=fromdate, live_bars=False)  # Исторические данные по малому временнОму интервалу (должен идти первым)
     cerebro.adddata(data)  # Добавляем данные
     data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=10, dataname=symbol, fromdate=fromdate, live_bars=False)  # Исторические данные по большому временнОму интервалу
 
-    # # 2. Исторические 1-минутные + 5-минутные бары за прошлый 3 дня + новые live бары / таймфрейм M1 + M5
-    # fromdate = dt.datetime.utcnow() - dt.timedelta(days=3)  # берем данные за последний 1 час
+    # # 2. Исторические 1-минутные + 5-минутные бары за прошлые 5 дней + новые live бары / таймфрейм M1 + M5
+    # fromdate = dt.datetime.utcnow() - dt.timedelta(days=5)  # берем данные за последний 1 час
     # data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=1, dataname=symbol, fromdate=fromdate, live_bars=True)  # Исторические данные по малому временнОму интервалу (должен идти первым)
     # cerebro.adddata(data)  # Добавляем данные
     # data = store.getdata(timeframe=bt.TimeFrame.Minutes, compression=5, dataname=symbol, fromdate=fromdate, live_bars=True)  # Исторические данные по большому временнОму интервалу
