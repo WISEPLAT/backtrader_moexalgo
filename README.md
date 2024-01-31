@@ -44,7 +44,7 @@ pip install git+https://github.com/WISEPLAT/backtrader.git
 
 3) У нас есть некоторые зависимости, вам нужно их установить:
 ```shell
-pip install numpy pandas backtrader moexalgo requests websockets matplotlib
+pip install -r requirements.txt
 ```
 
 ### Начало работы
